@@ -27,7 +27,7 @@
   }   
 </script>
 <script type="text/javascript" src="js/zepto.min.js"></script>
-<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script type="text/javascript" src="js/sha1.js"></script>
 <script type="text/javascript">
 var url=window.location.href.split("#")[0];
@@ -39,7 +39,8 @@ var ticket='';
 var exp=0;
 $.ajax({
 	type: 'GET',
-	url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+APPID+'&secret='+APPSECRET,
+	//url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+APPID+'&secret='+APPSECRET,
+	url:'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid='+APPID+'&corpsecret='+APPSECRET,
 	data:'',
 	success: function(data){
 		window.token=data.access_token;
@@ -54,7 +55,8 @@ $.ajax({
 function getTicket(tk){
 	$.ajax({
 		type: 'GET',
-		url: 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+tk+'&type=jsapi',
+		//url: 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+tk+'&type=jsapi',
+		url:'https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket?access_token='+tk,
 		data:'',
 		success: function(data){
 			ticket=data.ticket;
@@ -65,7 +67,7 @@ function getTicket(tk){
 	})
 }
 
-var string1='noncestr='+nonceStr+'&jsapi_ticket='+ticket+'&timestamp='+timestamp+'&url='+url;
+var string1='jsapi_ticket='+ticket+'&noncestr='+nonceStr+'&timestamp='+timestamp+'&url='+url;
 var signature=hex_sha1(string1);
 wx.config({
     debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
