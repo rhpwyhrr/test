@@ -31,6 +31,8 @@
 <script type="text/javascript" src="js/sha1.js"></script>
 <script type="text/javascript">
 var url=window.location.href.split("#")[0];
+//var APPID='wx99225fa3c2c03ab1';wx99225fa3c2c03ab1
+//var APPSECRET='6356aab042f9106f96daf32247e51b2a';
 var APPID='wx99225fa3c2c03ab1';
 var APPSECRET='6356aab042f9106f96daf32247e51b2a';
 var timestamp=new Date().toString();
@@ -81,7 +83,7 @@ wx.config({
 wx.ready(function(){
 	wx.onMenuShareTimeline({
 	    title: '2017吉屋房产网商沙龙test', // 分享标题
-	    link: 'http://www.baidu.com', // 分享链接
+	    link: '', // 分享链接
 	    imgUrl: 'images/logo.jpg', // 分享图标
 	    success: function () { 
 	        // 用户确认分享后执行的回调函数
